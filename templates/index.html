@@ -3,17 +3,106 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 
 <body>
-    <div class="App">
-        <header class="App-header">
-            <img src="{{ url_for('static', filename='Octocat.png') }}" class="App-logo" alt="logo" />
-            <p>
-                GitHub Codespaces <span class="heart">♥️</span> Flask
-            </p>
-            <p class="small">
-                Edit <code>templates/index.html</code> and refresh to see your changes!
-            </p>
-        </header>
-    </div>
+    <header>
+        <nav>
+            <div class="logo">Uber Fare Predictor</div>
+            <ul class="nav-links">
+                <li><a href="/home">Home</a></li>
+                <li><a href="#foot">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Get an Estimate for Your Ride</h1>
+            <p>Enter your details to calculate your fare.</p>
+            <!-- Fare Estimate Form -->
+            <form id="fare-estimate-form" method="POST" action="/estimate">
+                <div class="form-group">
+                    <label for="distance">Distance (in miles):</label>
+                    <input type="number" id="distance" name="distance" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="source">Source:</label>
+                    <select id="source" name="source" required>
+                        <option value="North End">North End</option>
+                        <option value="Beacon Hill">Beacon Hill</option>
+                        <option value="North Station">North Station</option>
+                        <option value="Boston University">Boston University</option>
+                        <option value="South Station">South Station</option>
+                        <option value="Fenway">Fenway</option>
+                        <option value="Theatre District">Theatre District</option>
+                        <option value="West End">West End</option>
+                        <option value="Back Bay">Back Bay</option>
+                        <option value="Northeastern University">Northeastern University</option>
+                        <option value="Haymarket Square">Haymarket Square</option>
+                        <option value="Financial District">Financial District</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination:</label>
+                    <select id="destination" name="destination" required>
+                        <option value="Beacon Hill">Beacon Hill</option>
+                        <option value="North End">North End</option>
+                        <option value="North Station">North Station</option>
+                        <option value="Boston University">Boston University</option>
+                        <option value="South Station">South Station</option>
+                        <option value="Fenway">Fenway</option>
+                        <option value="Theatre District">Theatre District</option>
+                        <option value="West End">West End</option>
+                        <option value="Back Bay">Back Bay</option>
+                        <option value="Northeastern University">Northeastern University</option>
+                        <option value="Haymarket Square">Haymarket Square</option>
+                        <option value="Financial District">Financial District</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product_id">Product ID:</label>
+                    <select id="product_id" name="product_id" required>
+                        <option value="6f72dfc5-27f1-42e8-84db-ccc7a75f6969">6f72dfc5-27f1-42e8-84db-ccc7a75f6969
+                        </option>
+                        <option value="6c84fd89-3f11-4782-9b50-97c468b19529">6c84fd89-3f11-4782-9b50-97c468b19529
+                        </option>
+                        <option value="55c66225-fbe7-4fd5-9072-eab1ece5e23e">55c66225-fbe7-4fd5-9072-eab1ece5e23e
+                        </option>
+                        <option value="9a0e7b09-b92b-4c41-9779-2ad22b4d779d">9a0e7b09-b92b-4c41-9779-2ad22b4d779d
+                        </option>
+                        <option value="6d318bcc-22a3-4af6-bddd-b409bfce1546">6d318bcc-22a3-4af6-bddd-b409bfce1546
+                        </option>
+                        <option value="997acbb5-e102-41e1-b155-9df7de0a73f2">997acbb5-e102-41e1-b155-9df7de0a73f2
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="car_type">Type of Cab:</label>
+                    <select id="car_type" name="car_type" required>
+                        <option value="UberXL">UberXL</option>
+                        <option value="Black">Black</option>
+                        <option value="UberX">UberX</option>
+                        <option value="WAV">WAV</option>
+                        <option value="Black SUV">Black SUV</option>
+                        <option value="UberPool">UberPool</option>
+                    </select>
+                </div>
+                <button type="submit" class="cta-button">Estimate Fare(in USD)</button>
+                <div id="result">
+                    {% if prediction %}
+                    <p>Estimated Fare: ${{ prediction }}</p>
+                    {% endif %}
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer id="foot">
+        <div class="footer-content">
+            <p>Ayush &copy; 2023 Uber Fare Predictor</p>
+            <div class="social-icons">
+                <a href="https://Instagram.com/kumar_ayush_.16"><img src="/./static/instagram-icon.png" alt="Instagram"></a>
+                <a href="https://github.com/ayush8587/Uber_fare_prediction/tree/main"><img src="/./static/github-icon.png" alt="Github"></a>
+                <a href="https://www.linkedin.com/in/singhayush16"><img src="/./static/linkedin-icon.png" alt="LinkedIn"></a>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
