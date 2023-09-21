@@ -2,7 +2,9 @@
 # pylint: disable=missing-class-docstring
 # pylint: disable=missing-function-docstring
 from flask import Flask, render_template, request
-
+import tensorflow
+from tensorflow import keras
+from tensorflow.keras.models import load_model
 import joblib
 
 app = Flask(__name__)
@@ -23,9 +25,8 @@ def estimate():
     destination = request.form['destination']
     product_id = request.form['product_id']
     cab_type = request.form['car_type']
-    # Replace this with your actual diabetes prediction model
-    # For demonstration, we'll use a simple rule-based prediction
-    model=joblib.load('uber_fare_prediction_model.pkl')
+    
+    model=load_model('my_model.h5')
     prediction=model.predict([[distance,destination,source,product_id,cab_type]])[0]
     return render_template('index.html', prediction=f'{round(prediction,2)}')
 
